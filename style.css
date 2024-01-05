@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url('img/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 10vh;
+    box-shadow: 2px 2px 4px;
+}
+
+.logout{
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.loggedout-text{
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.middle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+}
+
+#form{
+    margin-top: 15vh;
+}
+
+#form fieldset{
+    width: 30vw;
+    padding: 30px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    background-color: rgba(64, 64, 2, 0.8);
+}
+
+#form fieldset legend{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#form fieldset .eye-container{
+    position: relative;    
+}
+
+.eye-container .eye{
+    position: absolute;
+    right: 5%;
+    top: 25%;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#form fieldset .input{
+    width: 25vw;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid;
+    background-color: transparent;
+    outline: none;
+    padding-left: 10px;
+    font-size: 1rem;
+}
+
+#form fieldset .btn-container{
+    width: 25vw;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-container button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid;
+    cursor: pointer;
+    background-color: transparent;    
+}
+
+.btn-container button:hover{
+    background-color: goldenrod;
+    box-shadow: 0 0 10px rgb(30, 26, 1);
+    transition: .5s;
+}
+
+.btn-container button:active{
+    transform: scale(.9);
+    transition: .2s;
+}
