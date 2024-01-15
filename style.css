@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&display=swap');
 
 
 *{
@@ -39,6 +40,21 @@ body{
     flex-direction: column;
     align-items: center;
     margin-top: 5vh;
+}
+
+.middle #delAccount{
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: red;
+    border: 1px solid;
+    border-radius: 10px;    
+    margin-top: 10px;
+    box-shadow: 2px 2px 4px;
+    transition: .3s;
+}
+
+.middle #delAccount:active{
+    transform: scale(.9);
 }
 
 #form{
@@ -110,4 +126,33 @@ body{
 .btn-container button:active{
     transform: scale(.9);
     transition: .2s;
+}
+
+footer .footer-text{
+    margin-top: 15vh;
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+    font-size: 13pt;
+    padding-top: 4rem;
+    color: blue;
+    font-weight: bold;
+}
+
+footer .footer-text p a{
+    color: blue;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 900px){
+    #form fieldset,
+    #form fieldset .input,
+    #form fieldset .btn-container{
+        width: 50vw;
+    }       
+}
+
+@media(max-width: 800px){
+    header h1, main h2{
+        font-size: 1rem;
+    }        
 }
