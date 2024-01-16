@@ -18,7 +18,6 @@ header.innerHTML = `<h1>Manipulando DOM</h1>`
 span.setAttribute('class', 'logout')
 span.innerHTML = `${!logged ? '<span class="loggedout-text">Você não está logado</span>' :  'Logout'}`
 main.setAttribute('class', 'middle')
-footer.setAttribute('class', 'footer-text')
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -115,7 +114,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     })
 
-    main.appendChild(footer).innerHTML = `
+    body.appendChild(footer).innerHTML = `
         <div class="footer-text">
             <p>
                 Copyright &copy; 2023 por 

@@ -33,6 +33,7 @@ body{
 .loggedout-text{
     font-weight: normal;
     font-size: 1rem;
+    cursor: default;
 }
 
 .middle{
@@ -128,8 +129,11 @@ body{
     transition: .2s;
 }
 
-footer .footer-text{
+footer{
     margin-top: 15vh;
+}
+
+footer .footer-text{
     font-family: 'Cormorant Garamond', serif;
     text-align: center;
     font-size: 13pt;
