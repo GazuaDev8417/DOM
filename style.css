@@ -79,6 +79,13 @@ body{
     font-weight: bold;
 }
 
+#form fieldset .radio-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 25vw;
+}
+
 #form fieldset .eye-container{
     position: relative;    
 }
@@ -129,8 +136,43 @@ body{
     transition: .2s;
 }
 
-footer{
+.user-container{
     margin-top: 15vh;
+    border: 1px solid;
+    width: 40vw;
+    padding: 15px;
+    line-height: 30px;
+}
+
+.delAccount-container{
+    text-align: center;
+}
+
+.delAccount-container #btnDelAccount{
+    width: 30vw;
+    background-color: red;
+    border: 1px solid;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.delAccount-container #btnDelAccount:hover{
+    box-shadow: 0 0 8px;
+    background-color: rgb(244, 24, 24);
+}
+
+.delAccount-container #btnDelAccount:active{
+    transform: scale(.9);
+}
+
+footer{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 footer .footer-text{

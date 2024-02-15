@@ -8,7 +8,6 @@ const span = document.createElement('span')
 const main = document.createElement('main')
 const footer = document.createElement('footer')
 
-
 /* Instance of body */
 const body = document.body
 
@@ -20,6 +19,16 @@ span.innerHTML = `${!logged ? '<span class="loggedout-text">Você não está log
 main.setAttribute('class', 'middle')
 
 
+/* Delete account */
+const deleteAccount = ()=>{
+    const decide = window.confirm('Tem certeza que deseja excluir sua conta?')
+
+    if(decide){
+        localStorage.clear()
+        location.href = 'index.html'
+    }
+}
+
 document.addEventListener('DOMContentLoaded', ()=>{
     /* Displaying elements on screen */
     body.appendChild(header)
@@ -30,7 +39,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
     main.innerHTML += `
         ${!logged ? (
             '<h2>Tela de login usando manipulação de DOM por javascript</h2>'
-        ) : `<h2>${user.hisName} está logado(a)</h2>`}
+        ) : `<h2>${user.hisName} está logado(a)</h2>
+            <div class="user-container">
+                <b>Nome: </b>${user.hisName}<br>
+                <b>Gênero: </b>${user.gender}<br>
+                <b>Email: </b>${user.email}<br>
+                <b>Nome de usuário: </b>${user.username}<br><br>
+                <div class="delAccount-container">
+                    <button id="btnDelAccount" onClick="deleteAccount()">
+                        Deletar Conta
+                    </button>
+                </div>
+            </div>
+        `}
     `
     main.innerHTML += `
         ${!logged ? (
@@ -39,11 +60,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     <legend>${user ? 'Login' : 'Registro'}</legend>
                     ${!user ? (
                         `<input 
-                        type="text"
-                        id="yourName"
-                        class="input"
-                        placeholder='Seu nome'
-                        required>`
+                            type="text"
+                            id="yourName"
+                            class="input"
+                            placeholder='Nome completo'
+                            required>`
+                    ) : ''}
+                    ${!user ? (
+                        `<div class="radio-container">
+                            <div>
+                                <input type="radio" id="male" name="gender" value="Masculino" required>
+                                <label for="male">Masculino</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="female" name="gender" value="Feminino" required>
+                                <label for="female">Feminino</label>
+                            </div>
+                         </div>`
                     ) : ''}
                     <input 
                         type="email"
@@ -51,6 +84,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
                         class="input"
                         placeholder='E-mail'
                         required>
+                    ${!user ? (
+                        `<input 
+                            type="text"
+                            id="username"
+                            class="input"
+                            placeholder='Nome de usuário'
+                            required>`
+                    ) : ''}
                     <div class="eye-container">
                         <input 
                             type="password"
@@ -72,47 +113,62 @@ document.addEventListener('DOMContentLoaded', ()=>{
     /* Form variables */
     const yourName = document.querySelector('#yourName')
     const email = document.querySelector('#email')
+    const username = document.querySelector('#username')
     const keyword = document.querySelector('#keyword')
     const eye = document.querySelector('.eye')
 
-    /* Show and hide password */
-    eye.addEventListener('click', ()=>{
-        if(keyword.type === 'password'){
-            keyword.setAttribute('type', 'text')
-            eye.innerText = 'Ocultar'
-        }else{
-            keyword.setAttribute('type', 'password')
-            eye.innerText = 'Mostrar'
-        }
+    let gender
+
+    document.getElementsByName('gender').forEach(radio=>{
+        radio.addEventListener('change', (event)=>{
+            gender = event.target.value
+        })
     })
 
-    /* Submit form */
-    document.querySelector('#form').addEventListener('submit', (e)=>{
-        e.preventDefault()
-        if(!user){
-            const userData = {
-                hisName: yourName.value,
-                email: email.value,
-                keyword: keyword.value
-            }
-    
-            if(userData.keyword.length < 6){
-                alert('Sua senha deve ter no mínimo 6 caracteres')
-                return
-            }
-
-            localStorage.setItem('user', JSON.stringify(userData))
-            localStorage.setItem('logged', 'logged')
-            location.reload()
-        }else{
-            if(email.value !== user.email || keyword.value !== user.keyword){
-                alert('Usuário não encontrado!')
+    /* Show and hide password */
+    if(!logged){
+        eye.addEventListener('click', ()=>{
+            if(keyword.type === 'password'){
+                keyword.setAttribute('type', 'text')
+                eye.innerText = 'Ocultar'
             }else{
+                keyword.setAttribute('type', 'password')
+                eye.innerText = 'Mostrar'
+            }
+        })
+
+        /* Submit form */
+        document.querySelector('#form').addEventListener('submit', (e)=>{
+            e.preventDefault()
+    
+            if(!user){
+                const userData = {
+                    hisName: yourName.value,
+                    gender,
+                    email: email.value,
+                    username: username.value,
+                    keyword: keyword.value
+                }
+        
+                if(userData.keyword.length < 6){
+                    alert('Sua senha deve ter no mínimo 6 caracteres')
+                    return
+                }
+    
+                localStorage.setItem('user', JSON.stringify(userData))
                 localStorage.setItem('logged', 'logged')
                 location.reload()
+            }else{
+                if(email.value !== user.email || keyword.value !== user.keyword){
+                    alert('Usuário não encontrado!')
+                }else{
+                    localStorage.setItem('logged', 'logged')
+                    location.reload()
+                }
             }
-        }
-    })
+        })
+    }
+
 
     body.appendChild(footer).innerHTML = `
         <div class="footer-text">
@@ -136,7 +192,6 @@ span.addEventListener('click', ()=>{
         }
     }
 })
-
 
 
 
