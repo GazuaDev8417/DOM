@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         ) : `<h2>${user.hisName} está logado(a)</h2>
             <div class="user-container">
                 <b>Nome: </b>${user.hisName}<br>
+                <b>Idade: </b>${user.age}<br>
                 <b>Gênero: </b>${user.gender}<br>
                 <b>Email: </b>${user.email}<br>
                 <b>Nome de usuário: </b>${user.username}<br><br>
@@ -53,6 +54,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             </div>
         `}
     `
+    /* Outro método para input text aceitar apenas números */
+    /* onkeypress="return event.charCode >= 48 && event.charCode <= 57" */
     main.innerHTML += `
         ${!logged ? (
             `<form id="form">
@@ -63,7 +66,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
                             type="text"
                             id="yourName"
                             class="input"
-                            placeholder='Nome completo'
+                            placeholder='Nome completo'                            
+                            required>`
+                    ) : ''}
+                    ${!user ? (
+                        `<input 
+                            type="text"
+                            id="age"
+                            class="input"
+                            placeholder='Idade'
+                            maxlength="3"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                             required>`
                     ) : ''}
                     ${!user ? (
@@ -112,6 +125,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     /* Form variables */
     const yourName = document.querySelector('#yourName')
+    const age = document.querySelector('#age')
     const email = document.querySelector('#email')
     const username = document.querySelector('#username')
     const keyword = document.querySelector('#keyword')
@@ -144,6 +158,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(!user){
                 const userData = {
                     hisName: yourName.value,
+                    age: age.value,
                     gender,
                     email: email.value,
                     username: username.value,
